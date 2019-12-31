@@ -160,10 +160,10 @@ replay_size = 600
 last_few = 50
 log_to_tensorboard = False 
 
-batch_size = 32
+batch_size = 64
 n_warm_up_episodes = 50
 n_episodes_per_iter = 50
-n_updates_per_iter = 200
+n_updates_per_iter = 100
 
 lr = 0.001
 agent = FCNN_AGENT().double()
