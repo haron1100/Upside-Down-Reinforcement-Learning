@@ -63,8 +63,8 @@ def collect_experience(policy, replay_buffer, replay_size, last_few, n_episodes=
     try:
         for _ in range(n_episodes):
             command = sample_command(init_replay_buffer, last_few)
-            writer.add_scalar('Command desired reward', command[0], i_episode)    # write loss to a graph
-            writer.add_scalar('Command horizon', command[1], i_episode)    # write loss to a graph
+            if log_to_tensorboard: writer.add_scalar('Command desired reward', command[0], i_episode)    # write loss to a graph
+            if log_to_tensorboard: writer.add_scalar('Command horizon', command[1], i_episode)    # write loss to a graph
             observation = env.reset()
             episode_mem = {'observation':[],
                             'action':[],
@@ -158,7 +158,7 @@ i_episode=0
 replay_buffer = []
 replay_size = 600
 last_few = 50
-log_to_tensorboard = True 
+log_to_tensorboard = False 
 
 batch_size = 32
 n_warm_up_episodes = 50
