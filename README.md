@@ -7,7 +7,7 @@ Link to paper with implementation details and results: https://arxiv.org/pdf/191
 
 Use as you wish. Tweet(@mfharoon)/email(hshams@hotmail.co.uk) me any interesting results you find and sets of hyperparameters that work for particular environments. I will share here. Thanks!
 
-### Working Parameters
+### Working Hyper-Parameters
 
 #### CartPole
 replay_size = 600<br>
