@@ -7,7 +7,7 @@ import torch.nn.functional as F
 
 env = gym.make('CartPole-v1')
 
-def random_policy(obs):
+def random_policy(obs, command):
     return np.random.randint(env.action_space.n)
 
 #Visualise agent function
