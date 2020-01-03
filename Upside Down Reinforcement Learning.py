@@ -11,9 +11,6 @@ def random_policy(obs, command):
     return np.random.randint(env.action_space.n)
 
 #Visualise agent function
-import time
-from copy import deepcopy
-#Visualise agent function
 def visualise_agent(policy, command, n=5):
     try:
         for trial_i in range(n):
