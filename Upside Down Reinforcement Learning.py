@@ -64,7 +64,7 @@ class FCNN_AGENT(torch.nn.Module):
     def create_optimizer(self, lr):
         self.optimizer = torch.optim.Adam(self.parameters(), lr=lr)
 
-#Full the replay buffer with more experience
+#Fill the replay buffer with more experience
 def collect_experience(policy, replay_buffer, replay_size, last_few, n_episodes=100, log_to_tensorboard=True):
     global i_episode
     init_replay_buffer = deepcopy(replay_buffer)
