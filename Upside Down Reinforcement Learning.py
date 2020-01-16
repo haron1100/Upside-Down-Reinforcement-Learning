@@ -11,9 +11,6 @@ def random_policy(obs, command):
     return np.random.randint(env.action_space.n)
 
 #Visualise agent function
-import time
-from copy import deepcopy
-#Visualise agent function
 def visualise_agent(policy, command, n=5):
     try:
         for trial_i in range(n):
@@ -45,7 +42,7 @@ class FCNN_AGENT(torch.nn.Module):
         self.command_scale=command_scale
         self.observation_embedding = torch.nn.Sequential(
             torch.nn.Linear(np.prod(env.observation_space.shape), hidden_size),
-            torch.nn.Sigmoid()
+            torch.nn.Tanh()
         )
         self.command_embedding = torch.nn.Sequential(
             torch.nn.Linear(2, hidden_size),
@@ -74,8 +71,8 @@ def collect_experience(policy, replay_buffer, replay_size, last_few, n_episodes=
     try:
         for _ in range(n_episodes):
             command = sample_command(init_replay_buffer, last_few)
-            writer.add_scalar('Command desired reward/Episode', command[0], i_episode)    # write loss to a graph
-            writer.add_scalar('Command horizon/Episode', command[1], i_episode)    # write loss to a graph
+            if log_to_tensorboard: writer.add_scalar('Command desired reward/Episode', command[0], i_episode)    # write loss to a graph
+            if log_to_tensorboard: writer.add_scalar('Command horizon/Episode', command[1], i_episode)    # write loss to a graph
             observation = env.reset()
             episode_mem = {'observation':[],
                            'action':[],
@@ -173,7 +170,7 @@ def create_stochastic_policy(policy_network):
 i_episode=0 #number of episodes trained so far
 i_updates=0 #number of parameter updates to the neural network so far
 replay_buffer = []
-log_to_tensorboard = True 
+log_to_tensorboard = False
 
 ## HYPERPARAMS
 replay_size = 700
